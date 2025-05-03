@@ -1,0 +1,3 @@
+CREATE DATABASE mydb;
+USE mydb;
+CREATE TABLE users (id INT, name VARCHAR(100));
