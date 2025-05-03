@@ -15,7 +15,7 @@ Ce lab est idéal pour comprendre **les bases de la segmentation réseau, de l'a
 
 ## 🧱 Topologie du réseau
 
-![Topologie réseau](./image.png)
+![alt text](image-1.png)
 
 ### Équipements :
 - 1 Switch
