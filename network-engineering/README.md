@@ -37,16 +37,16 @@ Ce lab est idéal pour comprendre **les bases de la segmentation réseau, de l'a
 
 ---
 
-## ⚙️ Étapes de configuration
+## Étapes de configuration
 
-### 🔸 1. VLANs sur le switch
+### 1. VLANs sur le switch
 ```bash
 Switch(config)# vlan 10
 Switch(config-vlan)# name Admin
 Switch(config)# vlan 20
 Switch(config-vlan)# name Etudiants
 
-2. Attribution des ports
+## 2. Attribution des ports
 Switch(config)# interface range fa0/1 - 2
 Switch(config-if-range)# switchport mode access
 Switch(config-if-range)# switchport access vlan 10
@@ -55,12 +55,12 @@ Switch(config)# interface range fa0/3 - 4
 Switch(config-if-range)# switchport mode access
 Switch(config-if-range)# switchport access vlan 20
 
-3. Trunk vers Router0
+## 3. Trunk vers Router0
 Switch(config)# interface fa0/5
 Switch(config-if)# switchport mode trunk
 
- Configuration du routeur interne (Router0)
- 1. Sous-interfaces pour inter-VLAN routing
+ ### Configuration du routeur interne (Router0)
+ ##1. Sous-interfaces pour inter-VLAN routing
  interface fa0/0.10
  encapsulation dot1Q 10
  ip address 192.168.10.1 255.255.255.0
@@ -69,7 +69,7 @@ interface fa0/0.20
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
 
-2. Configuration DHCP
+##2. Configuration DHCP
 ip dhcp pool VLAN10
  network 192.168.10.0 255.255.255.0
  default-router 192.168.10.1
@@ -83,46 +83,46 @@ ip dhcp pool VLAN20
 ip dhcp excluded-address 192.168.10.1 192.168.10.10
 ip dhcp excluded-address 192.168.20.1 192.168.20.10
 
-Configuration NAT (PAT)
-1. Interface NAT publique
+##Configuration NAT (PAT)
+##1. Interface NAT publique
 interface fa0/1
  ip address 203.0.113.1 255.255.255.0
  ip nat outside
 
-2. Interfaces NAT internes
+##2. Interfaces NAT internes
 interface fa0/0.10
  ip nat inside
 interface fa0/0.20
  ip nat inside
 
-3. ACL NAT
+##3. ACL NAT
 access-list 1 permit 192.168.10.0 0.0.0.255
 access-list 1 permit 192.168.20.0 0.0.0.255
 
-4. Activer NAT Overload
+##4. Activer NAT Overload
 ip nat inside source list 1 interface fa0/1 overload
 
-🧪 Tests à réaliser
-✅ Chaque PC doit obtenir une IP automatiquement avec DHCP (ipconfig)
+##🧪 Tests à réaliser
+##✅ Chaque PC doit obtenir une IP automatiquement avec DHCP (ipconfig)
 
-✅ Communication possible entre PC de VLAN différents (inter-VLAN)
+#✅ Communication possible entre PC de VLAN différents (inter-VLAN)
 
-✅ Ping vers 203.0.113.2 (simulateur Internet) doit réussir
+#✅ Ping vers 203.0.113.2 (simulateur Internet) doit réussir
 
-✅ Vérifier les traductions NAT :
+#✅ Vérifier les traductions NAT :
 show ip nat translations
 
 ## 📁 Fichiers
 
 | Fichier                | Description                                       |
 |------------------------|---------------------------------------------------|
-| `vlan-dhcp-nat.pkt`    | Fichier Packet Tracer complet du lab             |
-| `README.md`            | Ce fichier de description du lab                 |
+| `vlan-dhcp-nat.pkt`    | Fichier Packet Tracer complet du lab              |
+| `README.md`            | Ce fichier de description du lab                  |
 
 
 
 
-👨‍🎓 Auteur
-Ismael Baby
-Étudiant en cybersécurité – CCNB Campus de Dieppe
-GitHub : @ismael-cybersec
+#👨‍🎓 Auteur
+#Ismael Baby
+#Étudiant en cybersécurité – CCNB Campus de Dieppe
+#GitHub : @ismael-cybersec
