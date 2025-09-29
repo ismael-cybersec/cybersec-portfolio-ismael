@@ -1,3 +1,0 @@
-ls -la
-sudo apt update
-chmod +x script.sh
